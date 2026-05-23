@@ -1,0 +1,4 @@
+js/config.local.js
+node_modules/
+server/node_modules/
+server/uploads/

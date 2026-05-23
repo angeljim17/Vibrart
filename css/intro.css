@@ -1,0 +1,70 @@
+#warp-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 100%;
+  padding: 2.5rem 1.5rem 3rem;
+  text-align: center;
+}
+
+.intro__eyebrow {
+  font-family: var(--font-serif);
+  font-size: clamp(1.4rem, 5vw, 1.75rem);
+  font-weight: 400;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+  animation: fadeUp 0.8s ease 0.1s both;
+}
+
+.intro__tagline {
+  animation: fadeUp 0.8s ease 0.25s both;
+}
+
+.intro__tagline-main {
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 6vw, 2rem);
+  font-weight: 700;
+}
+
+.intro__tagline-sub {
+  font-family: var(--font-serif);
+  font-size: clamp(1rem, 4vw, 1.25rem);
+  font-weight: 400;
+  margin-top: 0.25rem;
+  opacity: 0.9;
+}
+
+.intro__logo-block {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  animation: fadeUp 0.8s ease 0.4s both;
+}
+
+.intro__logo-block .vibrart-logo--intro {
+  width: min(98vw, 900px);
+  max-height: 55vh;
+  object-fit: contain;
+}
+
+.intro__festival {
+  font-size: clamp(0.65rem, 2.5vw, 0.85rem);
+  letter-spacing: 0.2em;
+  opacity: 0.95;
+}
+
+.intro .btn-cta {
+  animation: fadeUp 0.8s ease 0.55s both;
+}

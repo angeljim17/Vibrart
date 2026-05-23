@@ -1,0 +1,98 @@
+<section class="screen" id="screen-admin" data-screen="admin">
+  <div class="admin-bg" aria-hidden="true">
+    <span class="admin-bg__orb admin-bg__orb--magenta"></span>
+    <span class="admin-bg__orb admin-bg__orb--pink"></span>
+    <span class="admin-bg__orb admin-bg__orb--cyan"></span>
+    <span class="admin-bg__orb admin-bg__orb--yellow"></span>
+    <span class="admin-bg__orb admin-bg__orb--violet"></span>
+    <span class="admin-bg__orb admin-bg__orb--coral"></span>
+  </div>
+  <div class="screen__content admin-page">
+    <button type="button" class="admin-logout" id="admin-logout" hidden>Cerrar sesión</button>
+
+    <header class="admin-page__header">
+      <img
+        src="assets/Logo_Vibrart.png"
+        alt="VIBRART — Arts &amp; Culture Festival"
+        class="vibrart-logo vibrart-logo--landing admin-page__logo"
+        width="960"
+        height="240"
+      >
+    </header>
+
+    <div id="admin-login" class="admin-login">
+      <h2 class="admin-page__title">Acceso admin</h2>
+      <p class="admin-login__intro">Solo personal autorizado. Usa el correo y la contraseña que te dio el equipo VIBRART.</p>
+      <form id="admin-login-form" class="admin-login__form" novalidate>
+        <label class="admin-login__field">
+          <span>Correo</span>
+          <input type="email" name="email" autocomplete="username" required maxlength="120" placeholder="tu@correo.com">
+        </label>
+        <label class="admin-login__field">
+          <span>Contraseña</span>
+          <input type="password" name="password" autocomplete="current-password" required minlength="8" placeholder="••••••••">
+        </label>
+        <p class="admin-login__error" id="admin-login-error" hidden></p>
+        <button type="submit" class="admin-login__submit" id="admin-login-submit">Entrar al panel</button>
+      </form>
+    </div>
+
+    <div id="admin-panel" class="admin-panel" hidden>
+      <h2 class="admin-page__title admin-page__title--panel">Panel Admin</h2>
+      <p class="admin-page__desc">Pulsa una miniatura para abrir el carrete.</p>
+
+      <div id="admin-gallery" class="admin-gallery" aria-live="polite">
+        <p class="admin-empty">Aún no se ha cargado la galería.</p>
+      </div>
+
+      <button type="button" class="btn-admin-refresh" id="btn-refresh-admin">
+        Actualizar galería
+      </button>
+    </div>
+  </div>
+
+  <div id="admin-viewer" class="admin-viewer" hidden role="dialog" aria-modal="true" aria-label="Carrete de fotos">
+    <button type="button" class="admin-viewer__backdrop" aria-label="Cerrar"></button>
+    <div class="admin-viewer__panel">
+      <button type="button" class="admin-viewer__close" aria-label="Cerrar">×</button>
+      <div class="admin-viewer__layout">
+        <div class="admin-viewer__carousel">
+          <div class="admin-viewer__stage">
+            <button type="button" class="admin-viewer__nav admin-viewer__nav--prev" aria-label="Foto anterior">‹</button>
+            <img class="admin-viewer__stage-img" src="" alt="">
+            <button type="button" class="admin-viewer__nav admin-viewer__nav--next" aria-label="Foto siguiente">›</button>
+            <span class="admin-viewer__counter"></span>
+          </div>
+          <div class="admin-viewer__reel" role="tablist" aria-label="Miniaturas del envío"></div>
+        </div>
+        <aside class="admin-viewer__aside">
+          <p class="admin-viewer__aside-label">Datos del envío</p>
+          <h3 class="admin-viewer__name" data-viewer="name"></h3>
+          <dl class="admin-viewer__meta">
+            <div>
+              <dt>Correo</dt>
+              <dd><a class="admin-viewer__link" data-viewer="email" href="#"></a></dd>
+            </div>
+            <div>
+              <dt>Teléfono</dt>
+              <dd><a class="admin-viewer__link" data-viewer="phone" href="#"></a></dd>
+            </div>
+            <div>
+              <dt>Último envío</dt>
+              <dd data-viewer="date"></dd>
+            </div>
+            <div>
+              <dt>Descripción</dt>
+              <dd class="admin-viewer__desc" data-viewer="desc"></dd>
+            </div>
+          </dl>
+          <div class="admin-viewer__actions">
+            <button type="button" class="admin-viewer__delete" id="admin-delete-photo">
+              Eliminar esta foto
+            </button>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+</section>

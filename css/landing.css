@@ -1,0 +1,325 @@
+.neon-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: var(--bg);
+  overflow: hidden;
+  background-image:
+    radial-gradient(ellipse 120% 40% at 50% 0%, rgba(255, 235, 59, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse 80% 30% at 70% 15%, rgba(255, 64, 129, 0.2) 0%, transparent 45%),
+    radial-gradient(ellipse 60% 25% at 30% 20%, rgba(0, 230, 118, 0.12) 0%, transparent 40%);
+}
+
+.neon-bg::before,
+.neon-bg::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.55;
+  animation: neonPulse 6s ease-in-out infinite alternate;
+}
+
+.neon-bg::before {
+  width: 280px;
+  height: 280px;
+  top: -40px;
+  left: 10%;
+  background: radial-gradient(circle, #ffeb3b 0%, transparent 70%);
+}
+
+.neon-bg::after {
+  width: 320px;
+  height: 320px;
+  top: 20px;
+  right: 5%;
+  background: radial-gradient(circle, #ff4081 0%, #00e676 40%, transparent 70%);
+  animation-delay: -3s;
+}
+
+/* Layout tipo mockup: logo arriba · bloque central · footer abajo */
+.landing.screen__content {
+  position: relative;
+  height: 100%;
+  max-height: 100%;
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: 1fr;
+  align-content: stretch;
+  gap: 0;
+  padding: 0 1.25rem 0.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.landing.screen__content--has-back {
+  padding-top: 0.65rem;
+}
+
+/* Admin discreto — esquina superior derecha */
+.landing__admin {
+  position: absolute;
+  top: 0.65rem;
+  right: 1rem;
+  z-index: 15;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(6px);
+  color: var(--white);
+  font-size: 0.62rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  opacity: 0.7;
+  transition:
+    opacity var(--transition-fast),
+    border-color var(--transition-fast),
+    background var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.landing__admin svg {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+}
+
+.landing__admin:hover {
+  opacity: 1;
+  border-color: rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-1px);
+}
+
+.landing__admin:active {
+  transform: translateY(0) scale(0.97);
+}
+
+@media (max-width: 768px) {
+  .landing.screen__content--has-back {
+    padding-top: calc(3.5rem + env(safe-area-inset-top, 0px));
+    padding-left: max(0.75rem, env(safe-area-inset-left, 0px));
+    padding-right: max(0.75rem, env(safe-area-inset-right, 0px));
+  }
+
+  .landing__admin {
+    position: fixed;
+    top: calc(env(safe-area-inset-top, 0px) + var(--back-btn-inset-top, 0.65rem));
+    right: calc(env(safe-area-inset-right, 0px) + var(--back-btn-inset-left, 0.75rem));
+    z-index: 55;
+    min-height: 44px;
+    padding: 0.5rem 0.9rem;
+    font-size: 0.58rem;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+}
+
+.landing__header {
+  grid-row: 1;
+  text-align: center;
+  padding: 0.15rem 0 0.35rem;
+  animation: fadeUp 0.7s ease both;
+}
+
+.landing__header .vibrart-logo--landing {
+  width: min(98vw, 960px);
+  max-height: clamp(120px, 26vh, 300px);
+  height: auto;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+
+.landing__main {
+  grid-row: 2;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  justify-items: stretch;
+  gap: clamp(0.75rem, 3vw, 2rem);
+  width: 100%;
+  padding: 0.25rem 0;
+}
+
+.landing__copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: center;
+  animation: fadeUp 0.7s ease 0.15s both;
+}
+
+.landing__slogan {
+  font-size: clamp(0.85rem, 2.4vw, 1rem);
+  margin-bottom: 0.2rem;
+}
+
+.landing__headline {
+  font-size: clamp(1.15rem, 4vw, 1.75rem);
+  font-weight: 700;
+  text-shadow: 0 0 24px rgba(255, 255, 255, 0.45);
+  margin-bottom: clamp(0.75rem, 2vh, 1.25rem);
+  line-height: 1.2;
+}
+
+.landing__cta-group {
+  margin-bottom: clamp(0.5rem, 1.2vh, 0.85rem);
+}
+
+.landing__cta-group:last-child {
+  margin-bottom: 0;
+}
+
+.landing__cta-label {
+  font-size: clamp(0.7rem, 1.9vw, 0.8rem);
+  margin-bottom: 0.3rem;
+  opacity: 0.9;
+}
+
+.landing .btn-pill {
+  max-width: min(100%, 260px);
+  padding: 0.6rem 1.25rem;
+  font-size: clamp(0.8rem, 2.2vw, 0.95rem);
+}
+
+.landing__hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+  height: 100%;
+  animation: fadeUp 0.7s ease 0.3s both;
+}
+
+.landing__hero-img {
+  width: auto;
+  height: auto;
+  max-width: 105%;
+  max-height: min(46vh, 420px);
+  object-fit: contain;
+  object-position: center;
+  pointer-events: none;
+  user-select: none;
+}
+
+.landing__footer {
+  grid-row: 3;
+  flex-shrink: 0;
+  padding-top: 0.25rem;
+  animation: fadeUp 0.7s ease 0.45s both;
+}
+
+.landing__footer-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1.25rem, 4vw, 2rem);
+  padding: 0.45rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.35);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.social-icon {
+  display: flex;
+  width: 26px;
+  height: 26px;
+  color: var(--white);
+  opacity: 0.9;
+  transition: opacity var(--transition-fast), transform var(--transition-fast);
+}
+
+.social-icon:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.social-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.live-tec {
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+  transition: opacity var(--transition-fast), transform var(--transition-fast);
+}
+
+.live-tec:hover {
+  opacity: 0.85;
+  transform: scale(1.05);
+}
+
+.live-tec__dot {
+  color: #e53935;
+  margin: 0 0.1em;
+}
+
+@media (max-height: 700px) {
+  .landing__header .vibrart-logo--landing {
+    max-height: clamp(95px, 22vh, 175px);
+  }
+
+  .landing__hero-img {
+    max-height: min(38vh, 300px);
+  }
+
+  .landing__headline {
+    margin-bottom: 0.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .landing__main {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .landing__copy {
+    order: 1;
+    text-align: center;
+    align-items: center;
+  }
+
+  .landing__hero {
+    order: 2;
+  }
+
+  .landing__hero-img {
+    max-height: min(34vh, 260px);
+  }
+
+  .landing .btn-pill {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (min-width: 768px) {
+  .landing.screen__content {
+    padding: 0 2rem 0.65rem;
+  }
+
+  .landing__admin {
+    right: 1.25rem;
+  }
+
+  .landing__header .vibrart-logo--landing {
+    max-height: clamp(130px, 28vh, 320px);
+  }
+
+  .landing__hero-img {
+    max-height: min(50vh, 460px);
+  }
+}

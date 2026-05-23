@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VIBRART — Álbum Digital</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/intro.css">
+  <link rel="stylesheet" href="css/landing.css">
+  <link rel="stylesheet" href="css/upload.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+  <div id="app"></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <div id="upload-contact-modal" class="upload-modal" hidden role="dialog" aria-modal="true" aria-labelledby="upload-modal-title">
+    <button type="button" class="upload-modal__backdrop" aria-label="Cerrar"></button>
+    <form id="upload-contact-form" class="upload-modal__panel" novalidate>
+      <h2 id="upload-modal-title" class="upload-modal__title">Antes de subir</h2>
+      <p class="upload-modal__intro">Déjanos tus datos para asociarlos a tus fotos.</p>
+
+      <label class="upload-modal__field">
+        <span>Nombre completo <em>*</em></span>
+        <input type="text" name="fullName" autocomplete="name" required maxlength="120" placeholder="Ej. María García López">
+      </label>
+
+      <label class="upload-modal__field">
+        <span>Correo electrónico <em>*</em></span>
+        <input type="email" name="email" autocomplete="email" required maxlength="120" placeholder="tu@correo.com">
+      </label>
+
+      <label class="upload-modal__field">
+        <span>Número telefónico <em>*</em></span>
+        <input type="tel" name="phone" autocomplete="tel" required maxlength="10" inputmode="numeric" pattern="[0-9]{10}">
+      </label>
+
+      <p class="upload-modal__error" id="upload-modal-error" hidden></p>
+
+      <div class="upload-modal__actions">
+        <button type="button" class="upload-modal__btn upload-modal__btn--ghost" id="upload-modal-cancel">Cancelar</button>
+        <button type="submit" class="upload-modal__btn upload-modal__btn--primary">Enviar fotos</button>
+      </div>
+    </form>
+  </div>
+
+  <div id="admin-delete-modal" class="admin-delete-modal" hidden role="dialog" aria-modal="true" aria-labelledby="admin-delete-title">
+    <button type="button" class="admin-delete-modal__backdrop" aria-label="Cerrar"></button>
+    <form id="admin-delete-form" class="admin-delete-modal__panel" novalidate>
+      <h2 id="admin-delete-title" class="admin-delete-modal__title">Eliminar esta foto</h2>
+      <p class="admin-delete-modal__intro">Se quitará del álbum y del servidor. Esta acción no se puede deshacer.</p>
+      <label class="admin-delete-modal__field">
+        <span>Tu contraseña <em>*</em></span>
+        <input type="password" name="password" autocomplete="current-password" required minlength="8" placeholder="••••••••">
+      </label>
+      <p class="admin-delete-modal__error" id="admin-delete-error" hidden></p>
+      <div class="admin-delete-modal__actions">
+        <button type="button" class="admin-delete-modal__btn admin-delete-modal__btn--ghost" id="admin-delete-cancel">Cancelar</button>
+        <button type="submit" class="admin-delete-modal__btn admin-delete-modal__btn--danger" id="admin-delete-submit">Eliminar foto</button>
+      </div>
+    </form>
+  </div>
+
+  <div id="public-gallery-lightbox" class="public-gallery-lightbox" hidden role="dialog" aria-modal="true" aria-label="Foto ampliada">
+    <button type="button" class="public-gallery-lightbox__backdrop" aria-label="Cerrar"></button>
+    <button type="button" class="public-gallery-lightbox__close" aria-label="Cerrar">×</button>
+    <button type="button" class="public-gallery-lightbox__prev" aria-label="Foto anterior">‹</button>
+    <button type="button" class="public-gallery-lightbox__next" aria-label="Foto siguiente">›</button>
+    <div class="public-gallery-lightbox__stage">
+      <img class="public-gallery-lightbox__img" src="" alt="">
+      <div class="public-gallery-lightbox__caption">
+        <p class="public-gallery-lightbox__author"></p>
+        <p class="public-gallery-lightbox__desc"></p>
+      </div>
+    </div>
+    <p class="public-gallery-lightbox__counter"></p>
+  </div>
+
+  <!-- config.local.js ANTES de config.js para que se fusionen las credenciales -->
+  <script src="js/config.local.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/supabase-client.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/warp.js"></script>
+  <script src="js/public-gallery.js"></script>
+  <script src="js/upload.js"></script>
+  <script src="js/admin.js"></script>
+  <script src="js/router.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
